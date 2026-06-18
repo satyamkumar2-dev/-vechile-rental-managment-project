@@ -1,0 +1,67 @@
+// Vehicle.java
+class Vehicle {
+    protected String vehicleNumber;
+    protected String brand;
+    protected double rentPerDay;
+
+    public Vehicle(String vehicleNumber, String brand, double rentPerDay) {
+        this.vehicleNumber = vehicleNumber;
+        this.brand = brand;
+        this.rentPerDay = rentPerDay;
+    }
+
+    public double calculateRent(int days) {
+        return rentPerDay * days;
+    }
+
+    public void displayDetails() {
+        System.out.println("Vehicle Number: " + vehicleNumber);
+        System.out.println("Brand: " + brand);
+        System.out.println("Rent Per Day: ₹" + rentPerDay);
+    }
+}
+
+// Car.java
+class Car extends Vehicle {
+
+    public Car(String vehicleNumber, String brand, double rentPerDay) {
+        super(vehicleNumber, brand, rentPerDay);
+    }
+
+    @Override
+    public double calculateRent(int days) {
+        return (rentPerDay * days) + 500;
+    }
+}
+
+// Bike.java
+class Bike extends Vehicle {
+
+    public Bike(String vehicleNumber, String brand, double rentPerDay) {
+        super(vehicleNumber, brand, rentPerDay);
+    }
+
+    @Override
+    public double calculateRent(int days) {
+        return rentPerDay * days;
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+
+        Vehicle v1 = new Car("MP09C1234", "Hyundai", 1000);
+        Vehicle v2 = new Bike("MP09B5678", "Honda", 300);
+
+        int days = 3;
+
+        System.out.println("===== CAR DETAILS =====");
+        v1.displayDetails();
+        System.out.println("Car Rent for " + days + " days: ₹" + v1.calculateRent(days));
+
+        System.out.println("\n===== BIKE DETAILS =====");
+        v2.displayDetails();
+        System.out.println("Bike Rent for " + days + " days: ₹" + v2.calculateRent(days));
+    }
+}
